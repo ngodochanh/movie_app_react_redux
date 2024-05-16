@@ -10,7 +10,9 @@ function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(`/search?q=${searchInput}`);
+    if (searchInput) {
+      navigate(`/search?q=${searchInput}`);
+    }
   }, [searchInput]);
 
   const handleSubmit = () => {};
