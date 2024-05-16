@@ -3,15 +3,11 @@ import logo from '../assets/logo.png';
 import userIcon from '../assets/user.png';
 import { IoSearchOutline } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
+import { navigation } from '../constants/navigation';
 
 function Header() {
   const [searchInput, setSearchInput] = useState('');
   const navigate = useNavigate();
-
-  const navigation = [
-    { label: 'TV Shows', href: 'tv' },
-    { label: 'Movies', href: 'movie' },
-  ];
 
   useEffect(() => {
     navigate(`/search?q=${searchInput}`);
@@ -32,7 +28,7 @@ function Header() {
               <NavLink
                 key={nav.label}
                 to={nav.href}
-                className={({ isActive }) => `px-2 hover:text-neutral-100 ${isActive && 'text-neutral-100'}`}
+                className={({ isActive }) => `px-2 hover:text-neutral-100 ${isActive && 'text-white'}`}
               >
                 {nav.label}
               </NavLink>
