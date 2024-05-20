@@ -8,7 +8,7 @@ function Card({ data, trending, index }) {
   return (
     <Link
       to={'/' + data.media_type + '/' + data.id}
-      className='w-full min-w-[230px] max-w-[230px] h-80 overflow-hidden rounded relative'
+      className='w-full min-w-[230px] max-w-[230px] h-80 overflow-hidden block rounded relative hover:scale-105 transition-all'
     >
       <img src={imageUrl + data?.poster_path} alt='' />
 
@@ -20,7 +20,7 @@ function Card({ data, trending, index }) {
         )}
       </div>
 
-      <div className='absolute bottom-0 h-16 backdrop-blur-3xl w-full bg-black/60 px-2'>
+      <div className='absolute bottom-0 h-16 backdrop-blur-3xl w-full bg-black/60 p-2'>
         <h2 className='text-ellipsis line-clamp-1 text-lg font-semibold'>{data?.title || data?.name}</h2>
         <div className='text-sm text-neutral-400 flex justify-between items-center'>
           <p>{moment(data.release_date).format('MMMM Do YYYY')}</p>
