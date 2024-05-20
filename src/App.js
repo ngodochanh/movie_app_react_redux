@@ -24,7 +24,6 @@ function App() {
     try {
       const response = await axios.get('/configuration');
       dispatch(setImageUrl(response.data.images.secure_base_url + 'original'));
-      console.log(response.data.images.secure_base_url + 'original');
     } catch (error) {
       console.log('error fetchConfiguration: ', error);
     }
