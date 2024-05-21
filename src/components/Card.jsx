@@ -11,7 +11,11 @@ function Card({ data, trending, index, media_type }) {
       to={'/' + mediaType + '/' + data.id}
       className='w-full min-w-[230px] max-w-[230px] h-80 overflow-hidden block rounded relative hover:scale-105 transition-all'
     >
-      <img src={imageUrl + data?.poster_path} alt='' />
+      {data?.poster_path ? (
+        <img src={imageUrl + data?.poster_path} alt='' />
+      ) : (
+        <div className='bg-neutral-800 h-full w-full flex justify-center items-center'>No image found</div>
+      )}
 
       <div className='absolute top-4'>
         {trending && (

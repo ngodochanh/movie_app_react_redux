@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useSearchParams } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import userIcon from '../assets/user.png';
 import { IoSearchOutline } from 'react-icons/io5';
@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 import { navigation } from '../constants/navigation';
 
 function Header() {
-  const [searchInput, setSearchInput] = useState('');
+  const [searchParams] = useSearchParams();
+  const [searchInput, setSearchInput] = useState(Object.fromEntries([...searchParams])['q']);
   const navigate = useNavigate();
 
   useEffect(() => {
