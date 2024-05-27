@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import moment from 'moment/moment';
 import Divider from '../components/Divider';
 import HorizontalScrollCard from '../components/HorizontalScrollCard';
+import { useState } from 'react';
+import VideoPlay from '../components/VideoPlay';
 
 function DetailsPage() {
   const params = useParams();
@@ -13,11 +15,19 @@ function DetailsPage() {
   const { data: castData } = useFetchDetails(`/${params?.explore}/${params?.id}/credits`);
   const { data: similarData } = useFetch(`/${params?.explore}/${params?.id}/similar`);
   const { data: recommendationData } = useFetch(`/${params?.explore}/${params?.id}/recommendations`);
+  const [playVideo, setPlayVideo] = useState(false);
+  const [playVideoData, setPlayVideoData] = useState();
+
   const duration = (Number(data?.runtime) / 60).toFixed(1).split('.');
   const writer = castData?.crew
     ?.filter((el) => el?.job === 'Writer')
     .map((el) => el?.name)
     ?.join(', ');
+
+  const handlePlayVideo = (data) => {
+    setPlayVideoData(data);
+    setPlayVideo(true);
+  };
 
   return (
     <div>
@@ -31,6 +41,12 @@ function DetailsPage() {
       <div className='container mx-auto px-3 py-16 lg:py-0 flex flex-col lg:flex-row gap-5 lg:gap-10'>
         <div className='relative mx-auto lg:-mt-28 lg:mx-0 w-fit min-w-60'>
           <img src={imageUrl + data?.poster_path} className='h-80 w-80 object-cover rounded' />
+          <button
+            className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg  hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'
+            onClick={() => handlePlayVideo(data)}
+          >
+            Play Now
+          </button>
         </div>
 
         <div>
@@ -108,6 +124,7 @@ function DetailsPage() {
           media_type={params?.explore}
         />
       </div>
+      {playVideo && <VideoPlay data={playVideoData} close={() => setPlayVideo(false)} media_type={params?.explore} />}
     </div>
   );
 }
