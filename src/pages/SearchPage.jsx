@@ -11,7 +11,7 @@ function SearchPage() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`/search/collection`, {
+      const response = await axios.get(`/search/multi`, {
         params: {
           query: Object.fromEntries([...searchParams])['q'],
           page: page,

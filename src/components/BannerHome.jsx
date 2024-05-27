@@ -29,7 +29,7 @@ function BannerHome() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [bannerData, imageUrl]);
+  }, [bannerData, imageUrl, currentImage]);
 
   return (
     <section className='w-full h-full'>
